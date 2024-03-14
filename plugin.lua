@@ -36,14 +36,18 @@ end
 
 local function action2func()
 	local selectedSnippet = [[
-TODO
+script.Parent.Touched:Connect(function(hit)
+	if hit and hit.Parent:FindFirstChild("Humanoid") then
+		hit.Parent.Humanoid.Health = hit.Parent.Humanoid.Health - 10
+	end
+end)
 	]]
 
 	local selectedObjects = game:GetService("Selection"):Get()
 	if #selectedObjects > 0 then
 		local scriptParent = selectedObjects[1]
-		local newScript = Instance.new("LocalScript")
-		local scriptName = "Hello World Script2"
+		local newScript = Instance.new("Script")
+		local scriptName = "Kill Block"
 		newScript.Source = selectedSnippet
 		newScript.Parent = scriptParent
 		newScript.Name = scriptName
